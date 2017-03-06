@@ -12,3 +12,7 @@ Title: Juju
 
 ## Testing the environment
 
+## Resources
+// links to other useful Juju pages
+
+< PREVIOUS -  NEXT>
