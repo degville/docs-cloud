@@ -12,20 +12,20 @@ CentOS, RHEL and SUSE][maaspricing]. But in combination with [Juju][juju],
 complex environments can be modelled and deployed, pulled down and redeployed
 again, easily and entirely abstracted from your underlying infrastructure.
 
-We're going to use MAAS as the foundation for Juju to deploy a fledged
+We're going to use MAAS as the foundation for Juju to deploy a fully fledged
 OpenStack cloud. 
 
-A typical MAAS environment will include the following, which we'll use in the
-following steps as the framework for our own deployment:
+The following is what you'll find in a typical MAAS environment and  we'll use
+this as the framework for our own deployment:
 
 - A **Region controller** interacts with and controls the wider environment for
   a region 
-- One or more **Rack controllers** to manage locally grouped hardware, usually
-  within a data centre rack.
+- One or more **Rack controllers** manage locally grouped hardware, usually
+  within a data centre rack
 - Multiple **Nodes** are individual machines managed by the Rack controller,
-  and ultimately, the Region controller.
+  and ultimately, the Region controller
 - Complex **Networking** topologies can me modelled and implemented by MAAS,
-  from a single fabric to multiple zones and many overlapping spaces.
+  from a single fabric to multiple zones and many overlapping spaces
 
 ## What you'll need
 
@@ -50,14 +50,15 @@ The hardware we'll be using is based on the following specifications:
 To get a better idea of the minimum requirements for the machines that run
 MAAS, take a look at the [MAAS documentation][minreq].
 
-Our network topology is also going to be as simple as possible whilst remaining
-both scaleable and functional. It contains a single zone for the four Compute
-nodes, with the machine hosting the MAAS region and rack controllers connected
-to both the external network and the single zone. It's recommended that MAAS is
-the sole provider of DHCP and DNS for the network hosting the nodes MAAS is
-going to manage, but we'll cover this in an imminent step. 
+As with the hardware, our network topology is also going to be as simple as
+possible whilst remaining both scaleable and functional. It contains a single
+zone for the four Compute nodes, with the machine hosting the MAAS region and
+rack controllers connected to both the external network and the single zone.
+It's recommended that MAAS is the sole provider of DHCP and DNS for the network
+hosting the nodes MAAS is going to manage, but we'll cover this in an imminent
+step. 
 
-Your hardware could differ considerably from the above and both Juju and MAAS
+Your hardware could differ considerably from the above and both MAAS and Juju
 will easily adapt. The Juju node could operate perfectly adequately with half
 the RAM (this would need to be defined as a bootstrap constraint) and adding
 more nodes will obviously improve performance. 
@@ -71,12 +72,12 @@ more nodes will obviously improve performance.
 
 The first step is to install [Ubuntu Server 16.04 LTS][ubuntuserver] on the
 machine that's going to host both the MAAS Rack and Region controllers. The
-Ubuntu Server install menu includes the option to install and configure [both
+Ubuntu Server install menu includes the option to [nstall and configure both
 controllers][installcontrollers], but it's easier to install Ubuntu Server
 first and then install the MAAS packages when the system is running. 
 
 The network configuration for your new server will depend on your own
-infrastructure. In our example, the MAAS server network interfaces connect to
+infrastructure. In our example, the MAAS server network interface connects to
 the wider network through `192.168.100.0/24`. These options can be configured
 during installation. See the Ubuntu Server [Network Configuration
 documentation][netdocs] for further details on modifying your network
@@ -92,9 +93,7 @@ sudo apt install maas
 At this point, MAAS is now running, albeit without a meaningful configuration.
 You can check this by pointing a web browser at
 `http://<your.maas.ip>:5240/MAAS/`.  You will see a page complaining that no
-admin user has been created yet, similar to the following:
-
-![web interface required admin][install-maas_noadmin]
+admin user has been created yet.
 
 A MAAS admin account is needed before we can start configuring MAAS. This
 needs to be done on the command line by typing the following:
@@ -103,7 +102,7 @@ needs to be done on the command line by typing the following:
 sudo maas createadmin
 ```
 You'll be asked for a username, a password and an email address. The following
-guide will assume `admin` was used as the username. 
+text will assume `admin` was used as the username. 
 
 !!! Note: 
     MAAS does not currently make use of the email address. 
@@ -111,7 +110,7 @@ guide will assume `admin` was used as the username.
 A final question will ask whether you want to import SSH keys. MAAS uses the
 public SSH key of a user to manage and secure access to deployed nodes, just as
 you might with managed servers or remote machines. Press `Enter` to skip this
-as we'll do this from the next step.
+as we'll do this from the web UI in the next step.
 
 ## On-boarding
 
@@ -123,7 +122,7 @@ will launch the 'Welcome to MAAS' on-boarding page:
 
 This is the first page of two that will step through the final steps necessary
 for MAAS to get up and running. Unless you have specific requirements, most of
-these options can be left at their default values.
+these options can be left at their default values:
 
 - **Connectivity**: important services that default to being outside of your
   network. These include package archives and the DNS forwarder.
@@ -141,27 +140,26 @@ these options can be left at their default values.
 
 ![SSH key import][install-maas_sshkeys]
 
-!!! Note: 
-    To generate a local SSH public/private key pair, type 
-    `ssh-keygen -t rsa` from the Linux account you'll control MAAS from, and
-    when asked, leave the passphrase blank.
+If you need to generate a local SSH public/private key pair, type `ssh-keygen -t rsa` 
+from the Linux account you'll control MAAS from, and when asked, leave
+the passphrase blank.
 
-Adding SSH keys completes this initial MAAS configuration. Click `Go to the
-dashboard` to move to the MAAS dashboard and the device discovery process
+Adding SSH keys completes this initial MAAS configuration. Click `Go to the dashboard` 
+to move to the MAAS dashboard and the device discovery process
 
 ## Networking
 
 By default, MAAS will monitor local network traffic and report any devices it
 discovers on the 'Device discovery' page of the web UI. This page also
 functions as the landing page for the dashboard and will be the first you see
-progressing from the installation first-steps.
+progressing from the installation on-boarding.
 
 ![Device discovery][install-maas_discovery]
 
 Before taking the configuration further, we need to tell MAAS about our network
 and how we'd like connections to be configured. 
 
-These options are managed from the `Subnets` page in the web UI. The subnets
+These options are managed from the `Subnets` page of the web UI. The subnets
 page defaults to listing connections by fabric and MAAS creates one fabric per
 physical NIC on the MAAS server. As we're configuring a machine with a single
 NIC, a single fabric will be be listed linked to the external subnet. 
@@ -169,11 +167,12 @@ NIC, a single fabric will be be listed linked to the external subnet.
 We need to add DHCP to the subnet that's going to manage the nodes. To do this,
 select the `untagged` VLAN the subnet to the right of `fabric-0`.
 
-The page that appears will be labelled something similar to `Default VLAN in
-fabric-0`. From here, click on the `Take action` button in the top right and
-select `Provide DHCP`. A new pane will appear that allows you to specify the
-start and end IP addresses for the DHCP range. Select `Provide DHCP` to accept
-the default values. The VLAN summary should now show DHCP as `Enabled`.
+The page that appears will be labelled something similar to 
+`Default VLAN in fabric-0`. From here, click on the `Take action` button in the
+top right and select `Provide DHCP`. A new pane will appear that allows you to
+specify the start and end IP addresses for the DHCP range. Select 
+`Provide DHCP` to accept the default values. The VLAN summary should now show
+DHCP as `Enabled`.
 
 ![Provide DHCP][install-maas_dhcp]
  
@@ -239,22 +238,22 @@ reflect the hardware on each node.
 For more information on the different states and actions for a node, see [Node
 actions][nodeactions] in the MAAS documentation.
 
-We're now almost at the stage where we can let Juju do it's thing. But before
+We're now almost at the stage where we can let Juju do its thing. But before
 we take that next step, we're going to rename and `tag` the newly added nodes so that we
 can instruct Juju which machines to use for which purpose. 
 
 To change the name of a node, select it from the `Nodes` page and use the
-editable name field in the top right - all nodes must end with `.maas`. Click
-on `Save` to fix the change. 
+editable name field in the top right. All nodes will automatically be suffixed
+with `.maas`. Click on `Save` to fix the change. 
 
 Tags are normally used to identify nodes with specific hardware, such GPUs for
 GPU-accelerated CUDA processing. This allows Juju to target these capabilities
 when deploying applications that may use them. But they can also be used for
-organisational and management purposes, which is who we're going to use them.
-We're going to add a `compute` tag to the four Compute nodes, and a `juju` tag
-to the node that will act as the Juju controller. 
+organisational and management purposes. This is how we're going to use them, by
+adding a `compute` tag to the four Compute nodes and a `juju` tag to the node
+that will act as the Juju controller. 
 
-Tags are added from the `Machine summary` section of the sane individual node page
+Tags are added from the `Machine summary` section of the same individual node page
 we used to rename a node. Click `Edit` on this section and look for `Tags`. A
 tag is added by entering a name for the tag in the empty field and clicking
 `Save changes`.
@@ -263,7 +262,7 @@ tag is added by entering a name for the tag in the empty field and clicking
 
 
 Here's a summary of the status of each node we've now added to MAAS, showing
-their names and tags along their hardware configuration:
+their names and tags alongside each node's hardware configuration:
 
 
 | Node name | Tag(s)            | CPUs | RAM | Drives | Storage    |
