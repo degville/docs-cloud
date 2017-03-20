@@ -1,6 +1,7 @@
 Title: Install MAAS
-TODO: Add something on cluster control interfaces (can't test locally)
+TODO: Cover switch configuration if this is a more likely scenario. 
       Add diagram for network topology
+
 # Install MAAS
 
 [MAAS][maas], *Metal As A Service*, brings cloud convenience to your hardware,
@@ -38,21 +39,21 @@ of both performing some real work and scaling to fit more ambitious projects.
 
 To make this minimal configuration as accessible as possible, we'll be
 using single nodes for multiple services, reducing the total number of machines
-required. The four Compute nodes, for instance, will co-host Ceph, Glance and
+required. The four cloud nodes, for instance, will co-host Ceph, Glance and
 Swift, as well as the other services required by OpenStack. 
 
 The hardware we'll be using is based on the following specifications:
 
 - 1 x MAAS Rack with Region controller: 8GB RAM, 2 CPUs, 1 NIC, 40GB storage
 - 1 x Juju node: 4GB RAM, 2 CPUs, 1 NIC, 40GB storage
-- 4 x OpenStack Compute nodes: 8GB RAM, 2 CPUs, 2 NICs, 80GB storage
+- 4 x OpenStack cloud nodes: 8GB RAM, 2 CPUs, 2 NICs, 80GB storage
 
 To get a better idea of the minimum requirements for the machines that run
 MAAS, take a look at the [MAAS documentation][minreq].
 
 As with the hardware, our network topology is also going to be as simple as
 possible whilst remaining both scaleable and functional. It contains a single
-zone for the four Compute nodes, with the machine hosting the MAAS region and
+zone for the four cloud nodes, with the machine hosting the MAAS region and
 rack controllers connected to both the external network and the single zone.
 It's recommended that MAAS is the sole provider of DHCP and DNS for the network
 hosting the nodes MAAS is going to manage, but we'll cover this in an imminent
@@ -197,7 +198,7 @@ status of `Synced`.
 ## Adding nodes
 
 MAAS is now ready to accept new nodes. To do this, first ensure your four
-Compute nodes and single Juju node are set to boot from a PXE image. Now simply
+cloud nodes and single Juju node are set to boot from a PXE image. Now simply
 power them on. MAAS will add these new nodes automatically by taking the
 following steps:
 
@@ -250,7 +251,7 @@ Tags are normally used to identify nodes with specific hardware, such GPUs for
 GPU-accelerated CUDA processing. This allows Juju to target these capabilities
 when deploying applications that may use them. But they can also be used for
 organisational and management purposes. This is how we're going to use them, by
-adding a `compute` tag to the four Compute nodes and a `juju` tag to the node
+adding a `compute` tag to the four cloud nodes and a `juju` tag to the node
 that will act as the Juju controller. 
 
 Tags are added from the `Machine summary` section of the same individual node page
@@ -278,11 +279,11 @@ their names and tags alongside each node's hardware configuration:
 
 Everything is now configured and ready for our next step. This will involve
 deploying the Juju controller onto its own node, and from there,  using Juju to
-deploy OpenStack into the four remaining Compute nodes. 
+deploy OpenStack into the four remaining cloud nodes. 
 
 <!-- LINKS -->
 [conjureup]: http://conjure-up.io/
-[juju]: https://jujucharms.com/
+[juju]: https://jujucharms.com/about
 [maas]: https://maas.io/
 [maascli]: https://docs.ubuntu.com/maas/2.1/en/manage-cli
 [maasapi]: https://docs.ubuntu.com/maas/2.1/en/api
