@@ -24,7 +24,7 @@ this as the framework for our own deployment:
   within a data centre rack
 - Multiple **Nodes** are individual machines managed by the Rack controller,
   and ultimately, the Region controller
-- Complex **Networking** topologies can me modelled and implemented by MAAS,
+- Complex **Networking** topologies can be modelled and implemented by MAAS,
   from a single fabric to multiple zones and many overlapping spaces
 
 ## What you'll need
@@ -72,9 +72,9 @@ more nodes will obviously improve performance.
 
 The first step is to install [Ubuntu Server 16.04 LTS][ubuntuserver] on the
 machine that's going to host both the MAAS Rack and Region controllers. The
-Ubuntu Server install menu includes the option to [nstall and configure both
-controllers][installcontrollers], but it's easier to install Ubuntu Server
-first and then install the MAAS packages when the system is running. 
+Ubuntu Server install menu includes the option to [Install and configure both
+controllers][installcontrollers], but to cover more use cases, we will assume
+that you have a fresh install of Ubuntu Server. 
 
 The network configuration for your new server will depend on your own
 infrastructure. In our example, the MAAS server network interface connects to
@@ -151,8 +151,8 @@ to move to the MAAS dashboard and the device discovery process
 
 By default, MAAS will monitor local network traffic and report any devices it
 discovers on the 'Device discovery' page of the web UI. This page also
-functions as the landing page for the dashboard and will be the first you see
-progressing from the installation on-boarding.
+functions as the landing page for the dashboard and will be the first one you
+see progressing from the installation on-boarding.
 
 ![Device discovery][install-maas_discovery]
 
@@ -235,8 +235,8 @@ minutes, successfully commissioned nodes will change their status to `Ready`.
 The CPU cores, RAM, number of drives and storage fields should now correctly
 reflect the hardware on each node. 
 
-For more information on the different states and actions for a node, see [Node
-actions][nodeactions] in the MAAS documentation.
+For more information on the different states and actions for a node, see
+[Node actions][nodeactions] in the MAAS documentation.
 
 We're now almost at the stage where we can let Juju do its thing. But before
 we take that next step, we're going to rename and `tag` the newly added nodes so that we
