@@ -214,7 +214,8 @@ node. This is why MAAS will attempt to power each node off during the
 discovery phase. If your hardware does not power off, it's likely that it's not
 using an IPMI based BMC and you will need to edit a node's power configuration
 to enable MAAS to control its power. See the [MAAS documentation][power] for
-more information on power types, including a table of [BMC driver support][bmc]. 
+more information on power types, including a [table][bmc] showing a feature
+comparison for the supported BMC drivers.
 
 To edit a node's power configuration, click on the arbitrary name your machine
 has been given in the `Nodes` page. This will open the configuration page for
