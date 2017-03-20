@@ -213,11 +213,12 @@ In order to fully manage a deployment, MAAS needs to be able power cycle each
 node. This is why MAAS will attempt to power each node off during the
 discovery phase. If your hardware does not power off, it's likely that it's not
 using an IPMI based BMC and you will need to edit a node's power configuration
-to enable MAAS to control its power.
+to enable MAAS to control its power. See the [MAAS documentation][power] for
+more information on power types, including a table of [BMC driver support][bmc]. 
 
-To do this, select click on the arbitrary name your machine has been given in
-the `Nodes` page. This will open the configuration page for that specific
-machine. `Power` is the second section from the top.
+To edit a node's power configuration, click on the arbitrary name your machine
+has been given in the `Nodes` page. This will open the configuration page for
+that specific machine. `Power` is the second section from the top.
 
 Use the drop-down `Power type` menu to open the configuration options for your
 node's specific power configuration and enter any further details that the
@@ -292,6 +293,8 @@ deploy OpenStack into the four remaining cloud nodes.
 [maasterms]: https://docs.ubuntu.com/maas/2.1/en/intro-concepts 
 [maasdocs]: https://docs.ubuntu.com/maas/2.1/en/
 [ubuntuserver]: https://www.ubuntu.com/download/server
+[power]: https://docs.ubuntu.com/maas/2.1/en/installconfig-power-types
+[bmc]: https://docs.ubuntu.com/maas/2.1/en/installconfig-power-types#bmc-driver-support
 [netdocs]: https://help.ubuntu.com/lts/serverguide/network-configuration.html
 [installcontrollers]: https://docs.ubuntu.com/maas/2.1/en/installconfig-iso-install
 [concepts]: https://docs.ubuntu.com/maas/2.1/en/intro-concepts
