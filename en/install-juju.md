@@ -13,10 +13,11 @@ We're now going to install and configure the following two core components of
 Juju to use our MAAS deployment:
 
 - The *controller* is the management node for a cloud environment. We'll be
-  using the MAAS node we tagged with `juju` to contain and our Juju controller.
+  using the MAAS node we tagged with `juju` to host the Juju controller.
 - The *client* is used by the operator to talk to one or more controllers,
   managing one or more different cloud environments. As long as it can access
-  the controller, almost any machine and operating system can run the Juju client.
+the controller, almost any machine and operating system can run the Juju
+client.
 
 ## Package installation
 
@@ -99,7 +100,7 @@ juju bootstrap --constraints tags=juju maas maas-controller
 ```
 
 The constraint in the above command will ask MAAS to use any nodes tagged with
-`juju` to host the container for the Juju client. We tagged this node within
+`juju` to host the controller for the Juju client. We tagged this node within
 MAAS in the [previous step][tagging]. 
 
 The output to a successful bootstrap will look similar to the following:
