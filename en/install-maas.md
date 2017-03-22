@@ -273,7 +273,7 @@ their names and tags alongside each node's hardware configuration:
 | os-compute02.maas | compute   | 2    | 6.0 | 3      | 85.9       |
 | os-compute03.maas | compute   | 2    | 6.0 | 3      | 85.9       |
 | os-compute04.maas | compute   | 2    | 6.0 | 3      | 85.9       |
-| os-juju01.maas    | juju      | 2    | 2.0 | 1      | 42.9       |
+| os-juju01.maas    | juju      | 2    | 4.0 | 1      | 42.9       |
 
 
 ## Next steps
