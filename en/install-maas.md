@@ -263,7 +263,6 @@ tag is added by entering a name for the tag in the empty field and clicking
 
 ![Adding tags][install-maas_tags]
 
-
 Here's a summary of the status of each node we've now added to MAAS, showing
 their names and tags alongside each node's hardware configuration:
 
@@ -280,8 +279,8 @@ their names and tags alongside each node's hardware configuration:
 ## Next steps
 
 Everything is now configured and ready for our next step. This will involve
-deploying the Juju controller onto its own node, and from there,  using Juju to
-deploy OpenStack into the four remaining cloud nodes. 
+deploying the Juju controller onto its own node. From there, we'll be using
+Juju and MAAS together to deploy OpenStack into the four remaining cloud nodes. 
 
 <!-- LINKS -->
 [conjureup]: http://conjure-up.io/
