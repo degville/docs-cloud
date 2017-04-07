@@ -5,9 +5,8 @@ TODO: Add image of deployment from the Juju GUI
 # Install OpenStack
 
 Now that we've installed and configured [MAAS][installmaas] and successfully
-deployed a [Juju][installjuju] controller, it's time to do some real work;
-we're going to use Juju to deploy [OpenStack][openstack], the leading open
-cloud platform. 
+deployed a [Juju][installjuju] controller, it's time to do some real work; use
+Juju to deploy [OpenStack][openstack], the leading open cloud platform. 
 
 We have two options when installing OpenStack. 
 
@@ -18,7 +17,7 @@ We have two options when installing OpenStack.
 1. Use a [`bundle`][bundle] to deploy OpenStack with a single command.  A
    bundle is an encapsulation of a working deployment, including all
    configuration, resources and references. It allows you to effortlessly recreate
-   a deployment with a single command.
+   or share from deployment with a single command.
 
 If this is your first foray into MAAS, Juju and OpenStack territory, we'd
 recommend starting with the first option. This will give you a stronger
@@ -71,14 +70,14 @@ juju add-model uos
 
 We're now going to step through adding each of the various OpenStack components
 to the new model. Each application will be installed from the 
-[Charm store][charmstore], and we'll be providing the configuration for many of
-the charms as a `yaml` file which we include as we deploy them. 
+[Charm store][charmstore]. We'll be providing the configuration for many of the
+charms as a `yaml` file which we include as we deploy them. 
 
 ### [Ceph-OSD][charmcephosd]
 
-We're starting with the Ceph object storage daemon. We want to configure Ceph
-to use the second drive of a cloud node, `/dev/sdb`, but change or ignore this
-to match your own configuration. The configuration is held within the following
+We're starting with the Ceph object storage daemon and we want to configure Ceph
+to use the second drive of a cloud node, `/dev/sdb`. Change or ignore this to
+match your own configuration. The configuration is held within the following
 file we've called `ceph-osd.yaml`:
 
 ```yaml
@@ -107,7 +106,7 @@ name:
 juju status ceph-osd
 ```
 
-In the early stages of deployment, the output will look similar to the
+In this early stage of deployment, the output will look similar to the
 following:
 
 ```no-highlight
@@ -132,8 +131,8 @@ Machine  State    DNS              Inst id  Series  AZ       Message
 
 Don't worry about the 'Missing relation' messages. We'll connect the relations
 together in a later step. You also don't have to wait for a deployment to finish
-before adding further applications to Juju. Errors will mostly resolve
-themselves as applications are deployed and relations are triggered.
+before adding further applications to Juju. Errors will resolve themselves as
+applications are deployed and dependencies are met.
 
 ### [Nova Compute][charmcompute]
 
@@ -150,14 +149,13 @@ nova-compute:
   virt-type: qemu
 ```
 
-Type the following to deploy `nova-compute` to the first machine:
+Type the following to deploy `nova-compute` to machine number 1:
 
 ```bash
 juju deploy --to 1 --config compute.yaml nova-compute
 ```
 
-And use the following commands to scale-out Nova Compute to the second and third
-machines:
+And use the following commands to scale-out Nova Compute to machines 2 and 3:
 
 ```bash
 juju add-unit --to 2 nova-compute
@@ -165,10 +163,10 @@ juju add-unit --to 3 nova-compute
 ```
 
 !!! Note:
-    We don't deploy Compute to machine `0`.
+    We don't deploy Compute to the first machine, `machine 0`.
 
 As before, it's worth checking `juju status nova-compute` output to make sure `nova-compute`
-has been deployed to three machines. Look for lines similar to this:
+has been deployed to three machines. Look for lines similar to these:
 
 ```no-highlight
 Machine  State    DNS              Inst id  Series  AZ       Message
@@ -222,7 +220,7 @@ We're going to colocate the Neutron API on machine 1 by using an [LXD][lxd]
 container. This is a great solution for both local deployment and for managing
 cloud instances.  
 
-We'll also deploy Neutron OpenvSwitch at the same time:
+We'll also deploy Neutron OpenvSwitch:
 
 ```bash
 juju deploy --to lxd:1 --config neutron.yaml neutron-api
@@ -233,17 +231,21 @@ We've got to a stage where we can start to connect applications together.
 Juju's ability to add these links, known as a relation in Juju, is one of its
 best features. 
 
+See [Managing relationships][relationships] in the Juju documentation for more
+information on relations.
+
+Add the network relations with the following commands:
+
 ```bash
 juju add-relation neutron-api neutron-gateway
 juju add-relation neutron-api neutron-openvswitch
 juju add-relation neutron-openvswitch nova-compute
 ```
+
 There are still 'Missing relations' messages in the status output, leading to
 the status of some applications to be `blocked`. This is because there are many
-more relations to be added and they'll resolve themselves as we add them.
-
-See [Managing relationships][relationships] in the Juju documentation for more
-information on relations.
+more relations to be added but they'll resolve themselves automatically as we
+add them.
 
 ### [Percona cluster][charmpercona]
 
@@ -356,7 +358,7 @@ juju add-relation openstack-dashboard keystone
 
 ### [Glance][charmglance]
 
-For the Glance, deploy as follows:
+For the Glance image service, deploy as follows:
 
 ```bash
 juju deploy --to lxd:2 glance
@@ -375,12 +377,11 @@ juju add-relation glance rabbitmq-server
 
 ### [Ceph monitor][charmcephmon]
 
-Ceph, the distributed storage system used by our deployment, needs a couple of extra
-parameters.
+Ceph, the distributed storage system, needs a couple of extra parameters.
 
-The first parameter is a UUID to ensure each cluster has a unique identifier.
-This is simply generated by running the `uuid` command (`apt install uuid`, if
-it's not already installed).  We'll use this value as the `fsid` in the
+The first is a UUID, ensuring each cluster has a unique identifier. This is
+simply generated by running the `uuid` command (`apt install uuid`, if it's not
+already installed).  We'll use this value as the `fsid` in the following
 `ceph-mon.yaml` configuration file.
 
 The second parameter is a `monitor-secret` for the configuration file. This is
@@ -397,13 +398,16 @@ The output will be similar to the following:
         key = AQAARuRYD1p/AhAAKvtuJtim255+E1sBJNUkcg==
 ```
 
-This is what the configuration file looks like with the values added:
+This is what the configuration file looks like with the required parameters:
 
 ```yaml
 ceph-mon:
   fsid: "a1ee9afe-194c-11e7-bf0f-53d6"
   monitor-secret: AQAARuRYD1p/AhAAKvtuJtim255+E1sBJNUkcg==
 ```
+
+!!! Note:
+    Double quotes are needed around the `fsid` value.
 
 Finally, deploy and scale the application as follows:
 
@@ -450,7 +454,7 @@ juju add-relation cinder ceph-mon
 
 ### [Swift proxy][charmswiftproxy]
 
-Swift also needs a unique identifier, best generated with the `uuid` command we
+Swift also needs a unique identifier, best generated with the `uuid` command
 used previously. The output UUID is used for the `swift-hash` value in the
 `wift-proxy.yaml` configuration file:
 
@@ -459,6 +463,8 @@ swift-proxy:
   zone-assignment: auto
   swift-hash: "a1ee9afe-194c-11e7-bf0f-53d662bc4339"
 ```
+!!! Note:
+    Double quotes are needed around the `swift-hash` value.
 
 Use the following command to deploy:
 
@@ -482,7 +488,8 @@ keep everything in time. This is added with the following simple command:
 juju deploy ntp
 ```
 
-With these last few `add-relation` commands to finish all the connections:
+These last few `add-relation` commands finish all the connections we need to
+make:
 
 ```bash
 juju add-relation neutron-gateway ntp
@@ -490,13 +497,13 @@ juju add-relation nova-compute ntp
 juju add-relation ceph-osd ntp
 ```
 
-All that's now left to do is wait for the output of `juju status` to show when
-everything is ready.
+All that's now left to do is wait on the output from `juju status` to show when
+everything is ready (everything turns green, if your terminal support colour).
 
-## Deploying OpenStack as a bundle
+## Deploy OpenStack as a bundle
 
 Stepping through the deployment of each application is the best way to
-understanding how OpenStack operates with Juju and how each application relates
+understanding how OpenStack and Juju operate, and how each application relates
 to one another. But it's a labour intensive process.
 
 The same deployment can be accomplished with a single command:
@@ -506,29 +513,30 @@ juju deploy openstack.bundle
 ```
 
 A [bundle][bundle], as used above, encapsulates the entire deployment process,
-including all applications, their configuration and relations. You can use
-a local file, as above, or deploy a curated bundle from the [charm
-store][osbundle]. 
+including all applications, their configuration parameters and any relations
+that need to be made. Generally, you can use a local file, as above, or deploy
+a curated bundle from the [charm store][osbundle]. 
 
-[Download the OpenStack][downloadbundle] bundle for this project and deploy
-using the above command. The speed of the deployment depends on our hardware,
-but may take some time. Watch the output of `juju status` to see when
-everything is ready.
+For our project, [download the OpenStack][downloadbundle] and deploy OpenStack
+using the above command. 
 
-## Testing OpenStack
+The speed of the deployment depends on your hardware, but may take some time.
+Monitor the output of `juju status` to see when everything is ready.
+
+## Test OpenStack
 
 After everything has deployed and the output of `juju status` settles, you can
 check to make sure OpenStack is working by logging into the Horizon dashboard.
 
-The quickest way to get the IP address for the machine running the dashboard is
-to type the following:
+The quickest way to get the IP address for the dashboard is with the following
+command:
 
 ```bash
 juju status --format=yaml openstack-dashboard | grep public-address | awk '{print $2}'
 ```
 
-The URL will be `http://<IP ADDRESS>/horizon`, which you should enter
-into your browser. Login with `admin` and `openstack`, unless you changed the
+The URL will be `http://<IP ADDRESS>/horizon`. When you enter this into your
+browser you can login with `admin` and `openstack`, unless you changed the
 password in the configuration file. 
 
 If everything works, you will see something similar to the following:
