@@ -551,7 +551,6 @@ see what it's capable of.
 [lxd]: https://www.ubuntu.com/containers/lxd
 [charmstore]: https://jujucharms.com
 [osbundle]: https://jujucharms.com/openstack-base/
-[downloadbundle]: 
 [relationships]: https://jujucharms.com/docs/stable/charms-relations
 [charmcephosd]: https://jujucharms.com/ceph-osd
 [charmcompute]: https://jujucharms.com/nova-compute/
@@ -570,3 +569,4 @@ see what it's capable of.
 
 <!-- IMAGES -->
 [install-openstack_horizon]: ../media/install-openstack_horizon.png
+
