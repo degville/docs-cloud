@@ -1,4 +1,4 @@
-Title: Language details - Contributing to docs  
+Title: Using en-GB for en-US writers
 
 # Using en-GB for en-US writers
 
