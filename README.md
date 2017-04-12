@@ -109,9 +109,9 @@ remote and your local fork. Github provides a button for this at the bottom of
 the pull request, or you can use `git` to remove the branch.
 
 Before creating another feature branch, make sure you update your fork's code
-by pulling from the original MAAS repository (see below).
+by pulling from the original repository (see below).
 
-## Keeping your fork in sync with MAAS docs upstream
+## Keeping your fork in sync with docs upstream
 
 You should now have both the upstream branch and your fork listed in git,
 `git remote -v` should return something like:
@@ -163,7 +163,7 @@ Below are a few helpful aliases that have been suggested:
 
 <!-- LINKS -->
 [ghhome]: https://github.com/CanonicalLtd/docs-cloud)
-[contributing]: 
+[contributing]: ./en/contributing.md
 [docbuilder]: https://github.com/CanonicalLtd/documentation-builder
 [joingithub]: https://github.com/join
 [configgit]: https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
