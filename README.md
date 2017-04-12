@@ -144,7 +144,7 @@ commands. These are located in your ``.gitconfig`` file under the ``[alias]``
 section.
 
 If you would like more details on Git aliases, You can find out more
-information here: [How to add Git aliases](https://git.wiki.kernel.org/index.php/Aliases)
+information here: [How to add Git aliases](https://git.wiki.kernel.org/index.php/Aliases).
 
 
 Below are a few helpful aliases that have been suggested:
