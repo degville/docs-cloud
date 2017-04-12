@@ -1,7 +1,6 @@
-Title: Contributing to Documentation
+Title: Contributing to documentation
 
-
-# Contributing to Documentation
+# Contributing to documentation
 
 This documentation is hosted on [GitHub][upstream-github]. Its source documents
 are written in standard [GitHub Flavored Markdown][github-gfm] (GFM) format,
