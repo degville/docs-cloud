@@ -1,6 +1,5 @@
 Title: Install OpenStack
 TODO: Add image of deployment from the Juju GUI
-      Add link to the bundle file
 
 # Install OpenStack
 
@@ -17,7 +16,8 @@ We have two options when installing OpenStack.
 1. Use a [`bundle`][bundle] to deploy OpenStack with a single command.  A
    bundle is an encapsulation of a working deployment, including all
    configuration, resources and references. It allows you to effortlessly recreate
-   or share from deployment with a single command.
+   a deployment with a single command or share that deployment with other Juju
+   users.
 
 If this is your first foray into MAAS, Juju and OpenStack territory, we'd
 recommend starting with the first option. This will give you a stronger
@@ -129,10 +129,10 @@ Machine  State    DNS              Inst id  Series  AZ       Message
 3        started  192.168.100.112  7gan3t   xenial  default  Deployed
 ```
 
-Don't worry about the 'Missing relation' messages. We'll connect the relations
-together in a later step. You also don't have to wait for a deployment to finish
-before adding further applications to Juju. Errors will resolve themselves as
-applications are deployed and dependencies are met.
+Don't worry about the 'Missing relation' messages. We'll add the required
+relations in a later step. You also don't have to wait for a deployment to
+finish before adding further applications to Juju. Errors will resolve
+themselves as applications are deployed and dependencies are met.
 
 ### [Nova Compute][charmcompute]
 
@@ -456,7 +456,7 @@ juju add-relation cinder ceph-mon
 
 Swift also needs a unique identifier, best generated with the `uuid` command
 used previously. The output UUID is used for the `swift-hash` value in the
-`wift-proxy.yaml` configuration file:
+`swift-proxy.yaml` configuration file:
 
 ```yaml
 swift-proxy:
@@ -500,29 +500,6 @@ juju add-relation ceph-osd ntp
 All that's now left to do is wait on the output from `juju status` to show when
 everything is ready (everything turns green, if your terminal support colour).
 
-## Deploy OpenStack as a bundle
-
-Stepping through the deployment of each application is the best way to
-understanding how OpenStack and Juju operate, and how each application relates
-to one another. But it's a labour intensive process.
-
-The same deployment can be accomplished with a single command:
-
-```bash
-juju deploy openstack.bundle
-```
-
-A [bundle][bundle], as used above, encapsulates the entire deployment process,
-including all applications, their configuration parameters and any relations
-that need to be made. Generally, you can use a local file, as above, or deploy
-a curated bundle from the [charm store][osbundle]. 
-
-For our project, [download the OpenStack][downloadbundle] and deploy OpenStack
-using the above command. 
-
-The speed of the deployment depends on your hardware, but may take some time.
-Monitor the output of `juju status` to see when everything is ready.
-
 ## Test OpenStack
 
 After everything has deployed and the output of `juju status` settles, you can
@@ -550,7 +527,7 @@ using both Juju and MAAS. The next step is to start playing with OpenStack to
 see what it's capable of.
 
 <!-- LINKS -->
-[osbundle]: #deploying-openstack-as-a-bundle
+[osbundle]: ./install-openstack-bundle.md
 [installmaas]: ./install-maas.md
 [installjuju]: ./install-juju.md
 [openstack]: https://www.openstack.org/
