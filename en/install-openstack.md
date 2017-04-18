@@ -523,8 +523,9 @@ If everything works, you will see something similar to the following:
 ## Next steps
 
 Congratulations, you've successfully deployed a working OpenStack environment
-using both Juju and MAAS. The next step is to start playing with OpenStack to
-see what it's capable of.
+using both Juju and MAAS. The next step is to
+[configure OpenStack][openstackconfig] for use within a production
+environment. 
 
 <!-- LINKS -->
 [osbundle]: ./install-openstack-bundle.md
@@ -551,6 +552,8 @@ see what it's capable of.
 [charmcinder]: https://jujucharms.com/cinder/
 [charmswiftproxy]: https://jujucharms.com/swift-proxy/
 [charmntp]: https://jujucharms.com/ntp/
+[openstackconfig]: ./config-openstack.md
+
 
 <!-- IMAGES -->
 [install-openstack_horizon]: ../media/install-openstack_horizon.png
