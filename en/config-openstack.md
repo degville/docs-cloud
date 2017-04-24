@@ -7,8 +7,8 @@ Now we've used [Juju][installjuju] and [MAAS][installmaas] to deploy
 production environment. 
 
 We'll cover first principles; setting up the environment variables, creating a
-project, virtual network access restrictions and Ubuntu cloud image deployment,
-creating a strong foundation that can easily be expanded upon. 
+project, virtual network access and Ubuntu cloud image deployment to create a
+strong foundation that can easily be expanded upon. 
 
 ## Environment variables
 
