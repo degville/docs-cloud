@@ -6,10 +6,9 @@ Now we've used [Juju][installjuju] and [MAAS][installmaas] to deploy
 [OpenStack][installos], it's time to configure OpenStack for use within a typical
 production environment. 
 
-We'll cover first principles, setting up the environment variables and using
-command line utilities to create a project, with virtual network and access
-restrictions, and deploy an Ubuntu cloud image. This foundation can easily be
-expanded upon. 
+We'll cover first principles; setting up the environment variables, creating a
+project, virtual network access restrictions and Ubuntu cloud image deployment,
+creating a strong foundation that can easily be expanded upon. 
 
 ## Environment variables
 
