@@ -6,9 +6,9 @@ Now we've used [Juju][installjuju] and [MAAS][installmaas] to deploy
 [OpenStack][installos], it's time to configure OpenStack for use within a typical
 production environment. 
 
-We'll cover first principles; setting up the environment variables, creating a
+We'll cover first principles; setting up the environment variables, adding a
 project, virtual network access and Ubuntu cloud image deployment to create a
-strong foundation that can easily be expanded upon. 
+strong OpenStack foundation that can easily be expanded upon. 
 
 ## Environment variables
 
@@ -112,7 +112,7 @@ new subnet's configuration:
 | enable_dhcp             | False                                |
 | gateway_ip              | 192.168.100.1                        |
 | host_routes             |                                      |
-| id                      | 563ecd06-bbc3-4c98-b93e-a73dd6ec2cef |
+| id                      | 563ecd06-bbc3-4c98-b93e              |
 | ip_version              | 4                                    |
 | ipv6_address_mode       | None                                 |
 | ipv6_ra_mode            | None                                 |
@@ -376,12 +376,12 @@ Before launching our first cloud instance, we'll need the network ID for the
 the `openstack network list` command:
 
 ```no-highlight
-+--------------------------------------+-------------+-------------------------------------+
-| ID                                   | Name        | Subnets                             |
-+--------------------------------------+-------------+-------------------------------------+
-| fc171d22-d1b0-467d-b6fa-109dfb77787b | Pub_Net     |563ecd06-bbc3-4c98-b93e-a73dd6ec2cef |
-| 8b0baa43-cb25-4a70-bf41-d4136cbfe16e | P01_Network |a91a604a-70d6-4688-915e-ed14c7db7ebd |
-+--------------------------------------+-------------+-------------------------------------+
++--------------------------------------+-------------+------------------------+
+| ID                                   | Name        | Subnets                |
++--------------------------------------+-------------+------------------------+
+| fc171d22-d1b0-467d-b6fa-109dfb77787b | Pub_Net     |563ecd06-bbc3-4c98-b93e |
+| 8b0baa43-cb25-4a70-bf41-d4136cbfe16e | P01_Network |a91a604a-70d6-4688-915e |
++--------------------------------------+-------------+------------------------+
 ```
 
 Use the network ID to replace the example in the following `server create`
