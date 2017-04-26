@@ -1,0 +1,139 @@
+navigation:
+
+  - title: Ubuntu OpenStack  
+    
+  - title: Install MAAS
+    location: install-maas.md
+
+    children:
+
+      - title: What you'll need 
+        location: install-maas.md#what-you'll-need
+
+      - title: Package installation 
+        location: install-maas.md#package-installation
+      
+      - title: On-boarding
+        location: install-maas.md#on-boarding
+ 
+      - title: Networking
+        location: install-maas.md#networking
+ 
+      - title: Images
+        location: install-maas.md#images
+ 
+      - title: Add nodes
+        location: install-maas.md#adding-nodes
+ 
+      - title: Commission nodes
+        location: install-maas.md#commission-nodes
+ 
+  - title: Install Juju
+    location: install-juju.md
+
+    children:
+
+      - title: Package installation
+        location: install-juju.md#package-installation
+        
+      - title: Client configuration
+        location: install-juju.md#client-configuration
+
+      - title: Testing the environment
+        location: install-juju.md#testing-the-environment
+       
+  - title: Install OpenStack
+    location: install-openstack.md
+  
+    children:
+    
+      - title: Deploy the Juju controller 
+        location: install-openstack.md#deploy-the-juju-controller
+                 
+      - title: Deploy OpenStack
+        location: install-openstack.md#deploy-openstack
+    
+        children:
+
+        - title: Ceph-OSD 
+          location: install-openstack.md#ceph-osd
+ 
+        - title: Nova Compute
+          location: install-openstack.md#nova-compute
+ 
+        - title: Swift storage
+          location: install-openstack.md#swift-storage
+ 
+        - title: Neutron networking
+          location: install-openstack.md#neutron-networking
+ 
+        - title: Percona cluster
+          location: install-openstack.md#percona-cluster
+ 
+        - title: Keystone
+          location: install-openstack.md#keystone
+ 
+        - title: RabbitMQ
+          location: install-openstack.md#rabbitmq
+ 
+        - title: Nova Cloud Controller
+          location: install-openstack.md#nova-cloud-controller
+ 
+        - title: OpenStack dashboard
+          location: install-openstack.md#openstack-dashboard
+ 
+        - title: Glance
+          location: install-openstack.md#glance
+ 
+        - title: Ceph monitor
+          location: install-openstack.md#ceph-monitor
+ 
+        - title: Cinder
+          location: install-openstack.md#cinder
+ 
+        - title: Swift proxy
+          location: install-openstack.md#swift-proxy
+ 
+        - title: NTP
+          location: install-openstack.md#ntp
+  
+      - title: Test OpenStack
+        location: install-openstack.md#test-openstack
+
+      - title: Install from a bundle
+        location: install-openstack-bundle.md
+    
+  - title: Configure OpenStack
+    location: config-openstack.md
+
+    children:
+        
+      - title: Environment variables
+        location: config-openstack.md#environment-variables
+                  
+      - title: Define external network
+        location: config-openstack.md#define-an-external-network
+        
+      - title: Cloud images
+        location: config-openstack.md#cloud-images
+        
+      - title: Working with projects
+        location: config-openstack.md#working-with-projects
+        
+      - title: Create a virtual network
+        location: config-openstack.md#create-a-virtual-network     
+        
+      - title: SSH access
+        location: config-openstack.md#ssh-access
+        
+      - title: Create a cloud instance
+        location: config-openstack.md#create-a-cloud-instance
+        
+      - title: Next steps
+        location: config-openstack.md#next-steps
+
+  - title: Help improve these docs
+    location: contributing.md
+
+  - title: Report a docs issue
+    location: https://github.com/CanonicalLtd/docs-cloud/issues/new
