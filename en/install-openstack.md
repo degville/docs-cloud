@@ -528,7 +528,6 @@ using both Juju and MAAS. The next step is to
 environment. 
 
 <!-- LINKS -->
-[osbundle]: ./install-openstack-bundle.md
 [installmaas]: ./install-maas.md
 [installjuju]: ./install-juju.md
 [openstack]: https://www.openstack.org/
