@@ -13,7 +13,7 @@ We have two options when installing OpenStack.
    Ceph, Compute, Swift, RabbitMQ, Keystone and Neutron in this way allows you
    to see exactly what Juju and MAAS are doing, and consequently, gives you a
    better understanding of the underlying OpenStack deployment. 
-1. Use a [`bundle`][bundle] to deploy OpenStack with a single command.  A
+1. Use a [bundle][bundle] to deploy OpenStack with a single command.  A
    bundle is an encapsulation of a working deployment, including all
    configuration, resources and references. It allows you to effortlessly recreate
    a deployment with a single command or share that deployment with other Juju
