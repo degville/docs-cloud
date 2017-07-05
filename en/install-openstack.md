@@ -24,8 +24,8 @@ recommend starting with the first option. This will give you a stronger
 foundation for maintaining and expanding the default deployment. Our
 instructions for this option continue below. 
 
-Alternatively, jump to [Deploying OpenStack as a bundle][osbundle] to learn
-about deploying as a bundle.
+Alternatively, jump to [Deploying OpenStack as a bundle][installbundle] to
+learn about deploying as a bundle.
 
 ## Deploy the Juju controller
 
