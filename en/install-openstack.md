@@ -530,6 +530,7 @@ environment.
 <!-- LINKS -->
 [installmaas]: ./install-maas.md
 [installjuju]: ./install-juju.md
+[installbundle]: ./install-openstack-bundle.md
 [openstack]: https://www.openstack.org/
 [bundle]: https://jujucharms.com/docs/stable/charms-bundles
 [jujumodels]: https://jujucharms.com/docs/stable/models
