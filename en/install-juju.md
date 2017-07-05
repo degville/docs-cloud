@@ -136,7 +136,7 @@ required by OpenStack.
 [maas]: https://maas.io/
 [installmaas]: ./install-maas.md
 [xenialdownload]: http://releases.ubuntu.com/16.04/
-[otherinstall]: https://jujucharms.com/docs/2.1/getting-started-general
+[otherinstall]: https://jujucharms.com/docs/stable/getting-started
 [tagging]: ./install-maas.md#commision-nodes
 
 <!-- IMAGES -->
