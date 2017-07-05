@@ -286,12 +286,12 @@ Juju and MAAS together to deploy OpenStack into the four remaining cloud nodes.
 [conjureup]: http://conjure-up.io/
 [juju]: https://jujucharms.com/about
 [maas]: https://maas.io/
-[maascli]: https://docs.ubuntu.com/maas/2.1/en/manage-cli
-[maasapi]: https://docs.ubuntu.com/maas/2.1/en/api
-[minreq]: https://docs.ubuntu.com/maas/2.1/en/#minimum-requirements
+[maascli]: https://docs.ubuntu.com/maas/2.2/en/manage-cli
+[maasapi]: https://docs.ubuntu.com/maas/2.2/en/api
+[minreq]: https://docs.ubuntu.com/maas/2.2/en/#minimum-requirements
 [maaspricing]: https://maas.io/#pricing
-[maasterms]: https://docs.ubuntu.com/maas/2.1/en/intro-concepts 
-[maasdocs]: https://docs.ubuntu.com/maas/2.1/en/
+[maasterms]: https://docs.ubuntu.com/maas/2.2/en/intro-concepts 
+[maasdocs]: https://docs.ubuntu.com/maas/2.2/en/
 [ubuntuserver]: https://www.ubuntu.com/download/server
 [power]: https://docs.ubuntu.com/maas/2.2/en/installconfig-nodes-power-types
 [bmc]: https://docs.ubuntu.com/maas/2.2/en/installconfig-nodes-power-types#bmc-driver-support
