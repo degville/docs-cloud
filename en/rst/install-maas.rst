@@ -123,7 +123,7 @@ Now we've created an admin account, the web interface will update to ask for
 login credentials. With credentials successfully accepted, the web interface
 will launch the 'Welcome to MAAS' on-boarding page:
 
-.. figure:: ../media/install-maas_welcome.png
+.. figure:: ../../media/install-maas_welcome.png
    :alt: welcome to maas
 
    welcome to maas
@@ -139,7 +139,7 @@ these options can be left at their default values:
    Ubuntu images MAAS will import and use on deployed nodes. Select
    ``14.04 LTS`` alongside ``16.04 LTS`` as an add an additional image.
 
-.. figure:: ../media/install-maas_images.png
+.. figure:: ../../media/install-maas_images.png
    :alt: Ubuntu images
 
    Ubuntu images
@@ -150,7 +150,7 @@ these options can be left at their default values:
    paste file contents into the box that appears. Click ``Import`` to fix the
    setting.
 
-.. figure:: ../media/install-maas_sshkeys.png
+.. figure:: ../../media/install-maas_sshkeys.png
    :alt: SSH key import
 
    SSH key import
@@ -171,7 +171,7 @@ discovers on the 'Device discovery' page of the web UI. This page also functions
 as the landing page for the dashboard and will be the first one you see
 progressing from the installation on-boarding.
 
-.. figure:: ../media/install-maas_discovery.png
+.. figure:: ../../media/install-maas_discovery.png
    :alt: Device discovery
 
    Device discovery
@@ -194,7 +194,7 @@ you to specify the start and end IP addresses for the DHCP range. Select
 ``Provide DHCP`` to accept the default values. The VLAN summary should now show
 DHCP as ``Enabled``.
 
-.. figure:: ../media/install-maas_dhcp.png
+.. figure:: ../../media/install-maas_dhcp.png
    :alt: Provide DHCP
 
    Provide DHCP
@@ -215,7 +215,7 @@ images, and check on the status of any images currently downloaded. These appear
 at the bottom, and both 16.04 LTS and 14.04 LTS should be listed with a status
 of ``Synced``.
 
-.. figure:: ../media/install-maas_imagestatus.png
+.. figure:: ../../media/install-maas_imagestatus.png
    :alt: Image status
 
    Image status
@@ -253,7 +253,7 @@ Use the drop-down ``Power type`` menu to open the configuration options for your
 node's specific power configuration and enter any further details that the
 configuration may require.
 
-.. figure:: ../media/install-maas_power.png
+.. figure:: ../../media/install-maas_power.png
    :alt: Power configuration
 
    Power configuration
@@ -294,7 +294,7 @@ page we used to rename a node. Click ``Edit`` on this section and look for
 ``Tags``. A tag is added by entering a name for the tag in the empty field and
 clicking ``Save changes``.
 
-.. figure:: ../media/install-maas_tags.png
+.. figure:: ../../media/install-maas_tags.png
    :alt: Adding tags
 
    Adding tags

@@ -532,7 +532,7 @@ password in the configuration file.
 
 If everything works, you will see something similar to the following:
 
-.. figure:: ../media/install-openstack_horizon.png
+.. figure:: ../../media/install-openstack_horizon.png
    :alt: Horizon dashboard
 
    Horizon dashboard

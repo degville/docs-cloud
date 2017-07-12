@@ -82,7 +82,7 @@ retrieve this, login to the MAAS web UI and click on the ``admin`` username near
 the top right. This will show the user preferences page. The top field will hold
 your MAAS keys:
 
-.. figure:: ../media/install-juju_maaskey.png
+.. figure:: ../../media/install-juju_maaskey.png
    :alt: MAAS API key
 
    MAAS API key

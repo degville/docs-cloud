@@ -176,7 +176,7 @@ The 'Compute>Images' page of OpenStack's Horizon web UI lists many more details
 about imported images. In particular, note their size as this will limit the
 minimum root storage size of any OpenStack flavours used to deploy them.
 
-.. figure:: ../media/config-openstack_images.png
+.. figure:: ../../media/config-openstack_images.png
    :alt: Horizon image details
 
    Horizon image details
